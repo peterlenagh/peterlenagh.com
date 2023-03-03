@@ -39,7 +39,7 @@ export default async function PresentationPreview({ presentation: presentationIn
                     ({ SlideComponent, slide }, i) => (
                         <li key={i}>
                             <Link href={`/presentations/${presentation}/${slide}`}>
-                                {slide}
+                                {slide.replaceAll("-", " - ")}
                             </Link>
                         </li>
                     )
