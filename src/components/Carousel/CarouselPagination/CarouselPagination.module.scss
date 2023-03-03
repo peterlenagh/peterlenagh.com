@@ -1,0 +1,20 @@
+.carousel-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.carousel-pagination__item {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0;
+  flex-shrink: 1;
+  &--active {
+    border: 1px solid #bada55;
+    background: #bada55;
+    &:hover {
+      background: #bada55;
+    }
+  }
+}

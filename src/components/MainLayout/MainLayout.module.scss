@@ -1,0 +1,57 @@
+@import '@/styles/colors';
+
+.layout {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+.layout {
+    font: 112.5%/1.45em georgia, serif;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 480px) {
+    .layout {
+        font-size: 100%;
+    }
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 100vw;
+    background: $bg;
+}
+
+.main {
+    flex-basis: 960px;
+    max-width: 960px;
+    padding: 1.45rem 1.0875rem;
+}
+
+.footer {
+    margin: 0;
+    padding: 1.45rem 1.0875rem;
+    // background: #bada55;
+    // color: #333;
+    display: flex !important;
+    justify-content: center;
+    border-top: 1px solid #bada55;
+
+    a {
+        color: #e8acff;
+        text-decoration: none;
+    }
+}
+
+.footer-contents {
+    flex-basis: 960px;
+}

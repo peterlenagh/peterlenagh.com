@@ -1,0 +1,26 @@
+@import '@/styles/colors';
+
+.slide-grid {
+    width: 80vw;
+    max-width: 100%;
+    display: flex;
+    gap: 1vh 1vw;
+    flex-wrap: wrap;
+    max-height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    > *{
+        border: 1px solid transparent;
+        &:hover {
+            border: 1px solid $brand;
+        }
+    }
+}

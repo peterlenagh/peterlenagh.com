@@ -1,0 +1,17 @@
+# BBC Presentation - Design & Architecture
+
+> Think about a complex system you have built, designed or worked on.  As part of the interview we'd like you to spend roughly 15 minutes talking us through that system, using a technical diagram tool of your choice.  We will ask questions to clarify our own understanding and also to dig deeper in some areas.
+
+### **Project:** Gant Product Listing Page Redesign & SSR via a standalone SSR service.
+
+- **How that structure was arrived at?**
+
+    * We were transitioning a "traditional" Symfony frontend to react.
+    * The client had a new, more complex, design for the PLP. Which necessitaed a more capable UI library.
+    * Of course, we had (non-functional) requirements that the PLP be performant and SEO friendly.
+    * To achieve all this, we needed to migrate the catalog page to React & come up with an SSR strategy compatible with the existing platform.
+    * After some analysis, this took the shape of a standalone complimentary SSR service & and some accompanying application architecture patterns to support it.
+
+* **Trade offs** of this SSR service approach:
+        * deployment ergonomics (more moving parts)
+        * increasing the surface area of frontend applications (increased complexity).

@@ -1,0 +1,55 @@
+.carousel {
+    width: 100%;
+    max-width: 800px;
+    img {
+        width: 100%;
+    }
+}
+
+.carousel__list {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.carousel__list::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel__item {
+    flex-shrink: 0;
+    width: 100%;
+}
+@supports (scroll-snap-align: start) {
+    /* modern scroll snap points */
+    .carousel__list {
+        scroll-snap-type: x mandatory;
+    }
+    .carousel__item {
+        scroll-snap-align: center;
+    }
+}
+
+@supports not (scroll-snap-align: start) {
+    /* old scroll snap points spec */
+    .carousel__list {
+        -webkit-scroll-snap-type: mandatory;
+        scroll-snap-type: mandatory;
+        -webkit-scroll-snap-destination: 0% center;
+        scroll-snap-destination: 0% center;
+        -webkit-scroll-snap-points-x: repeat(100%);
+        scroll-snap-points-x: repeat(100%);
+    }
+
+    .carousel__item {
+        scroll-snap-coordinate: 0 0;
+    }
+}

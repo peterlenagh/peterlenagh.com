@@ -1,0 +1,19 @@
+.arrow {
+    padding: 8px;
+    min-height: 0;
+    min-width: 0;
+
+    &::before {
+        opacity: 0.5;
+    }
+}
+
+.arrow--border {
+    &::before {
+        opacity: 0.2;
+    }
+}
+
+.arrow__icon--left {
+    transform: rotate(180deg);
+}

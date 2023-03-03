@@ -1,0 +1,53 @@
+.demo {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    * {
+        font-size: 0.8rem;
+    }
+}
+
+.carousel {
+    width: 100%;
+    max-width: 800px;
+}
+
+$breakpoint: 312px;
+$gap: 1rem;
+
+.carousel__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto 0;
+    flex-wrap: wrap;
+    gap: $gap;
+    @media (min-width: $breakpoint) {
+        flex-wrap: nowrap;
+    }
+
+    > button {
+        &:first-child {
+            margin-right: auto;
+        }
+        &:last-child {
+            margin-left: auto;
+        }
+        flex-grow: 1;
+        width: calc(50% - #{$gap} / 2);
+        @media (min-width: $breakpoint) {
+            flex-basis: 0;
+            width: auto;
+        }
+    }
+}
+
+.carousel__pagination {
+    order: 1;
+    flex-grow: 1;
+    @media (min-width: $breakpoint) {
+        order: 0;
+        flex-grow: 0;
+    }
+}

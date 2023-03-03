@@ -1,0 +1,21 @@
+.button {
+    // color: white;
+    border: 1px solid;
+    cursor: pointer;
+    padding: 8px;
+    word-wrap: break-word;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.3s ease-in-out;
+    &:hover {
+        background: rgba(255,255,255,0.15);
+    }
+    &:focus {
+        outline: none;
+    }
+    &:focus-visible {
+        border: 1px solid #bada55;
+    }
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
