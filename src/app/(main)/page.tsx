@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
+import classNames from 'classnames/bind';
 import Image from 'next/image';
 import styles from './page.module.scss';
 
+const cx = classNames.bind(styles);
 
 export default function Home() {
-  return (<main className="markdown-body">
+  return (<main className={cx("homepage__main", "markdown-body")}>
     <h1>Welcome</h1>
     <p>
       I am a Senior Software Engineer / Frontend Architect with over a decade

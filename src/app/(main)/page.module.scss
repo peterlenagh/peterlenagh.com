@@ -1,0 +1,13 @@
+@import '@/styles/colors';
+
+.homepage__main {
+    min-height: 40vh;
+    align-self: center;
+    width: 100%;
+    p {
+        max-width: 60ch;
+    }
+    h1 {
+        color: $pink;
+    }
+}

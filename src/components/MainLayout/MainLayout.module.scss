@@ -34,21 +34,28 @@
 .main {
     flex-basis: 960px;
     max-width: 960px;
-    padding: 1.45rem 1.0875rem;
+    padding: 8vh 1.0875rem 1.45rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer {
     margin: 0;
     padding: 1.45rem 1.0875rem;
-    // background: #bada55;
-    // color: #333;
     display: flex !important;
     justify-content: center;
-    border-top: 1px solid #bada55;
-
+    position: relative;
     a {
-        color: #e8acff;
+        color: $pink;
         text-decoration: none;
+    }
+    &:before {
+        content: "";
+        background: linear-gradient(to right, $pink, $brand);
+        height: 2px;
+        position: absolute;
+        top: 0;
+        width: 100vw;
     }
 }
 

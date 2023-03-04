@@ -1,17 +1,22 @@
 @import '@/styles/colors';
 
 .header {
-    border-bottom: 1px solid #bada55;
     display: flex !important;
     justify-content: flex-start;
     @media (min-width: 1090px) {
         justify-content: center;
     }
-    // display: flex;
-    // align-items: center;
     height: 6rem;
     position: relative;
     font-size: 0;
+    &:after {
+        content: "";
+        background: linear-gradient(to right, $brand, $pink);
+        height: 4px;
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+    }
 }
 
 .header--fixed {
@@ -43,10 +48,6 @@
 .header__contents {
     flex-basis: 960px;
     padding: 1.45rem 1.0875rem;
-    // padding: 1.45rem 0;
-    // margin-left: 5.899375rem;
-    // margin-left: 10rem;
-    // left: -4rem;
     position: relative;
     font-size: 1rem;
 }
@@ -55,18 +56,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    width: calc(6rem - 2.175rem);
+    font-size: 3rem;
+    width: 3.825rem;
     height: 6rem;
     flex-shrink: 0;
     padding-left: 1.0875rem;
-    // padding: 1.45rem 2.34575rem 1.45rem 2.34575rem;
+    -webkit-text-stroke-width: thin;
+    padding-bottom: 0.6125rem;
+    color: $brand;
+    transition: color 0.2s ease-in-out;
     @media (min-width: 1090px) {
         position: absolute;
         left: 0;
         top: 0;
     }
     &:hover {
-        color: $brand;
+        color: $pink;
     }
 }
