@@ -14,7 +14,7 @@ export default async function SlidePage(props: PageProps) {
         <>
             {presentations.map((presentation) => (
                 // @ts-expect-error Server Component
-                <PresentationPreview key={presentation} presentation={presentation} />
+                <PresentationPreview key={presentation} presentation={presentation} linkTitle />
             ))}
         </>
     );

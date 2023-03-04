@@ -26,7 +26,7 @@ const MainLayout = ({ children }: {
             </h1>
         </Header>
         <div className={cx('main-wrapper')}>
-          <main className={cx('main')}>{children}</main>
+          <main className={cx('main', 'markdown-body')}>{children}</main>
         </div>
 
         <footer className={cx('footer')}>

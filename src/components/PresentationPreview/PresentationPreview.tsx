@@ -11,10 +11,11 @@ import styles from './PresentationPreview.module.scss';
 const cx = classNames.bind(styles);
 
 type PresentationPreviewProps = {
-  presentation: string;
+    presentation: string;
+    linkTitle?: boolean;
 }
 
-export default async function PresentationPreview({ presentation: presentationIn }: PresentationPreviewProps) {
+export default async function PresentationPreview({ presentation: presentationIn, linkTitle = false }: PresentationPreviewProps) {
 
     const presentation = fixSpaces(presentationIn);
     const slides = getPresentationSlides(presentation);
@@ -26,13 +27,13 @@ export default async function PresentationPreview({ presentation: presentationIn
             presentation
         });
     }
-
+    const MaybeLink = linkTitle ? Link : React.Fragment;
     return (
         <>
-            <h1>
-                <Link className={cx('presentation-preview__header')} href={`/presentations/${presentation}`}>
+            <h1 className={cx('presentation-preview__header')}>
+                <MaybeLink href={`/presentations/${presentation}`}>
                     {presentation}
-                </Link>
+                </MaybeLink>
             </h1>
             <ul className={cx('presentation-preview__slides')}>
                 {slideComponents.map(

@@ -36,7 +36,42 @@
     max-width: 960px;
     padding: 1.45rem 1.0875rem;
     display: flex;
+
     flex-direction: column;
+    padding-bottom: 3.125rem;
+    width: 100%;
+    &:global(.markdown-body){
+        margin: auto 0;
+        p {
+            max-width: 60ch;
+        }
+        a {
+            color: $pink;
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+                position: relative;
+                &:after {
+                    content: " ";
+                    position: absolute;
+                    height: 2px;
+                    background: $offWhite;
+                    margin-top: 5px;
+                    bottom: -4px;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: $offWhite;
+        }
+    }
 }
 
 .footer {

@@ -6,7 +6,7 @@ import styles from './page.module.scss';
 const cx = classNames.bind(styles);
 
 export default function Home() {
-  return (<main className={cx("homepage__main", "markdown-body")}>
+  return (<>
     <h1>Welcome</h1>
     <p>
       I am a Senior Software Engineer / Frontend Architect with over a decade
@@ -15,6 +15,6 @@ export default function Home() {
     <p>
       This is my personal website, I mostly use to host presentations or demo work, so I'm afraid there's not loads here to see...
     </p>
-  </main>
+  </>
   )
 }
