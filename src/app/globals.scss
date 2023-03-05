@@ -22,26 +22,79 @@ a {
     color-scheme: dark;
   }
 }
+$basicPattern: transparent,
+transparent 3px,
+$transparentBrand 3px,
+$transparentBrand 4px,
+transparent 4px,
+transparent 7px;
 
+
+$patternSameStrokeWidth: transparent,
+transparent 3px,
+$transparentBrand 3px,
+$transparentBrand 4px,
+transparent 4px,
+transparent 7px,
+$transparentPink 7px,
+$transparentPink 9px,
+transparent 9px,
+transparent 12px,
+$transparentPink 12px,
+$transparentPink 14px,
+transparent 14px,
+transparent 17px,
+$transparentBrand 17px,
+$transparentBrand 18px,
+transparent 18px,
+transparent 27px;
+
+$pattern: transparent,
+  transparent 3px,
+  $transparentBrand 3px,
+  $transparentBrand 5px,
+  transparent 5px,
+  transparent 8px,
+  $transparentPink 8px,
+  $transparentPink 9px,
+  transparent 9px,
+  transparent 12px,
+  $transparentPink 12px,
+  $transparentPink 13px,
+  transparent 13px,
+  transparent 16px,
+  $transparentBrand 16px,
+  $transparentBrand 18px,
+  transparent 18px,
+  transparent 27px;
+
+$patternReversedStrokeWidth: transparent,
+  transparent 3px,
+  $transparentBrand 3px,
+  $transparentBrand 5px,
+  transparent 5px,
+  transparent 8px,
+  $transparentPink 8px,
+  $transparentPink 10px,
+  transparent 10px,
+  transparent 13px,
+  $transparentPink 13px,
+  $transparentPink 15px,
+  transparent 15px,
+  transparent 18px,
+  $transparentBrand 18px,
+  $transparentBrand 20px,
+  transparent 20px,
+  transparent 32px;
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $bg;
   background-image: repeating-linear-gradient(45deg,
-      transparent,
-      transparent 3px,
-      $transparentBrand 3px,
-      $transparentBrand 4px,
-      transparent 4px,
-      transparent 7px),
+      $pattern),
     repeating-linear-gradient(135deg,
-      transparent,
-      transparent 3px,
-      $transparentBrand 3px,
-      $transparentBrand 4px,
-      transparent 4px,
-      transparent 7px);
+      $pattern);
   color: $offWhite;
   font-family: georgia, serif;
   font-weight: normal;
