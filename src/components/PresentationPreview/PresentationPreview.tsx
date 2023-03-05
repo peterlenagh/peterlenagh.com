@@ -35,12 +35,15 @@ export default async function PresentationPreview({ presentation: presentationIn
                     {presentation}
                 </MaybeLink>
             </h1>
-            <ul className={cx('presentation-preview__slides')}>
+            <ol start={0} className={cx('presentation-preview__slides')}>
                 {slideComponents.map(
                     ({ SlideComponent, slide }, i) => (
-                        <li key={i}>
-                            <Link href={`/presentations/${presentation}/${slide}`}>
-                                {slide.replaceAll("-", " - ")}
+                        <li className={cx('presentaion-preview__item')} key={i}>
+
+                            {/* <div className={cx('presentation-preview__preview-spacer')}/>
+                            <iframe className={cx('presentation-preview__preview')} src={`/presentations/${presentation}/${slide.replaceAll(" ", "+")}`} /> */}
+                            <Link href={`/presentations/${presentation}/${slide.replaceAll(" ","+")}`}>
+                                {slide.replace(/^\d*\-/g,"")}
                             </Link>
                         </li>
                     )
@@ -52,7 +55,7 @@ export default async function PresentationPreview({ presentation: presentationIn
                         </Link>
                     )
                 )} */}
-            </ul>
+            </ol>
         </>
     );
 }
