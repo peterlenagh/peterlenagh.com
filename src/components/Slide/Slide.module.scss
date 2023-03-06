@@ -13,6 +13,15 @@
     color: #c9d1d9;
     background-color: #121212;
     font-size: 1.5rem;
+
+}
+
+:global(.markdown-body) {
+    .slide {
+        :global(p) {
+        max-width: none;
+        }
+    }
 }
 
 .slide__contents {

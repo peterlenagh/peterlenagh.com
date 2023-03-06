@@ -37,25 +37,28 @@ export default async function PresentationPreview({ presentation: presentationIn
             </h1>
             <ol start={0} className={cx('presentation-preview__slides')}>
                 {slideComponents.map(
-                    ({ SlideComponent, slide }, i) => (
+                    ({ slide }, i) => (
                         <li className={cx('presentaion-preview__item')} key={i}>
-
-                            {/* <div className={cx('presentation-preview__preview-spacer')}/>
-                            <iframe className={cx('presentation-preview__preview')} src={`/presentations/${presentation}/${slide.replaceAll(" ", "+")}`} /> */}
                             <Link href={`/presentations/${presentation}/${slide.replaceAll(" ","+")}`}>
                                 {slide.replace(/^\d*\-/g,"")}
                             </Link>
                         </li>
                     )
                 )}
-                {/* {slideComponents.map(
-                    ({ SlideComponent, slide }, i) => (
-                        <Link key={i} href={`/presentations/${presentation}/${slide}`}>
-                            <Slide><SlideComponent /></Slide>
-                        </Link>
-                    )
-                )} */}
             </ol>
+            <div className={cx('presentation-preview__slide-previews')}>
+                {slideComponents.map(({ SlideComponent, slide }, i) => (
+                    <div key={i} className={cx('presentation-preview__slide-item')}>
+                        <Link href={`/presentations/${presentation}/${slide}`}>
+                            <div className={cx('presentation-preview__preview-spacer')}/>
+                            <Slide className={cx('presentation-preview__slide')}>
+                                <SlideComponent />
+                            </Slide>
+                        </Link>
+                    </div>
+                )
+                )}
+            </div>
         </>
     );
 }
