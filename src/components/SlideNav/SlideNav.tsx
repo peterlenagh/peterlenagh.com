@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-// import classnames from 'classnames/bind';
+import classnames from 'classnames/bind';
 
-// import styles from './SlideNav.module.scss';
+import styles from './SlideNav.module.scss';
 
-// const cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 type SlideNavProps = React.ComponentPropsWithoutRef<'nav'> & {
   slides: string[];
@@ -54,24 +54,36 @@ const SlideNav = ({ slides, presentation, current }: SlideNavProps) => {
   const prev = useMemo(() => currentIndex > 0 && slides[currentIndex - 1],[currentIndex, slides]);
   const next = useMemo(() => currentIndex < slides.length - 1 && slides[currentIndex + 1],[currentIndex, slides]);
 
+  const prevHref = `/presentations/${presentation}/${prev}`.replaceAll(' ', '+');
+  const nextHref = `/presentations/${presentation}/${next}`.replaceAll(' ', '+');
+  const overviewHref = `/presentations/${presentation}`.replaceAll(' ', '+');
   useEffect(() => {
-    if (goNext && next) { router.push(`/presentations/${presentation}/${next}`.replaceAll(' ', '+')) }
-  }, [goNext, next, presentation, router]);
+    if (goNext && next) { router.push(nextHref) }
+  }, [goNext, next, nextHref, router]);
 
   useEffect(() => {
-    if (goPrev && prev) { router.push(`/presentations/${presentation}/${prev}`.replaceAll(' ', '+')) }
-  }, [goPrev, prev, presentation, router]);
+    if (goPrev && prev) { router.push(prevHref) }
+  }, [goPrev, prev, router, prevHref]);
 
-    useEffect(() => {
-    if (goPresentationHome) { router.push(`/presentations/${presentation}`.replaceAll(' ', '+')) }
-  }, [goPresentationHome, presentation, router]);
-  return null;
-  // return (
-  //   <nav className={cx('slide-nav')}>
-  //     {prev && <Link href={`/presentations/${presentation}/${prev}`}>Prev</Link>}
-  //     {next && <Link href={`/presentations/${presentation}/${next}`}>Next</Link>}
-  //   </nav>
-  // );
+  useEffect(() => {
+    if (goPresentationHome) { router.push(overviewHref) }
+  }, [goPresentationHome, overviewHref, router]);
+
+  // return null;
+  const prevProps = {
+    href: prev ? prevHref: overviewHref,
+    // ['aria-disabled']: !prev,
+  };
+  const nextProps = {
+    href: next ? nextHref: overviewHref,
+    // ['aria-disabled']: !next,
+  };
+  return (
+    <nav className={cx('slide-nav')}>
+      <Link prefetch={true} {...prevProps}>{prev ? '◁' : '▦'}</Link>
+      <Link prefetch={true} {...nextProps}>{next ? '▷' : '▦'}</Link>
+    </nav>
+  );
 };
 
 export default SlideNav;

@@ -8,13 +8,16 @@ import { fixSpaces, getPresentations, getPresentationSlides, getSlideComponent }
 import Button from '@/components/Button';
 import Image from 'next/image';
 import Frame from '@/components/Frame';
+
 /**
- * compoents used in dynamic imports dont get their styles applied, this hack forces them to be included in the bundle
+ * compoents used in dynamic imports (i.e. our specific mdx slides)
+ * don't get their styles applied, this hack forces them to be
+ * included in the bundle.
  */
 const hack = [
   Button,
   Image,
-  Frame
+  Frame,
 ];
 
 const cx = classNames.bind(styles);
@@ -37,12 +40,11 @@ export default async function SlidePage(props: PageProps) {
     const slides = getPresentationSlides(presentation);
     return (
       <>
-        {/* <Button label="lol"/> */}
-            <Slide>
-                <SlideComponent />
-            </Slide>
-            <SlideNav slides={slides} current={slide} presentation={presentation} />
-        </>
+          <Slide>
+              <SlideComponent />
+          </Slide>
+          <SlideNav slides={slides} current={slide} presentation={presentation} />
+      </>
     );
 }
 
