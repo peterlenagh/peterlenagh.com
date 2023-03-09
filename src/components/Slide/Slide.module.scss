@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     width: 100vw;
     min-height: 100vh;
@@ -12,15 +12,20 @@
     background-repeat: no-repeat;
     overflow: hidden;
     color: #c9d1d9;
-    background-color: #121212;
+    background-color: #111;
     font-size: 1.5rem;
 
 }
 
 :global(.markdown-body) {
-    .slide {
+    &.slide {
         :global(p) {
-        max-width: none;
+            max-width: none !important;
+        }
+        :global(img) {
+            width: 100% !important;
+            height: auto !important;
+            max-width: 100% !important;
         }
     }
 }

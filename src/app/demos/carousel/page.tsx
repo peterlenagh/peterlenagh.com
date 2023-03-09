@@ -30,9 +30,6 @@ const slides = [
 ];
 
 export default function CarouselDemo() {
-
-
-
     return (
         <CarouselContextProvider>
             <div className={cx('demo')}>

@@ -1,12 +1,9 @@
-import classNames from 'classnames/bind';
-import styles from './page.module.scss'
 import SlideNav from '@/components/SlideNav';
 import Slide from '@/components/Slide';
+
 import { fixSpaces, getPresentations, getPresentationSlides, getSlideComponent } from '@/app/presentations/utils';
 
-
 import Button from '@/components/Button';
-import Image from 'next/image';
 import Frame from '@/components/Frame';
 
 /**
@@ -16,11 +13,8 @@ import Frame from '@/components/Frame';
  */
 const hack = [
   Button,
-  Image,
   Frame,
 ];
-
-const cx = classNames.bind(styles);
 
 type PageProps = {
   params: {

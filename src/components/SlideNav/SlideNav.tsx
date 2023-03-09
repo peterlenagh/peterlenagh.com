@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import classnames from 'classnames/bind';
 
+import useKeyPress from '@/utils/hooks/useKeyPress';
+import usePrevious from '@/utils/hooks/usePrevious';
+import useLocalStorage from '@/utils/hooks/useLocalStorage';
+
 import styles from './SlideNav.module.scss';
 
 const cx = classnames.bind(styles);
@@ -15,40 +19,16 @@ type SlideNavProps = React.ComponentPropsWithoutRef<'nav'> & {
   current: string;
 };
 
-function useKeyPress(targetKey: string): boolean {
-  // State for keeping track of whether key is pressed
-  const [keyPressed, setKeyPressed] = useState(false);
-
-  // Add event listeners
-  useEffect(() => {
-    // If pressed key is our target key then set to true
-    function downHandler({ key }: KeyboardEvent): void {
-      if (key === targetKey && !keyPressed) {
-        setKeyPressed(true);
-      }
-    }
-    // If released key is our target key then set to false
-    const upHandler = ({ key }: KeyboardEvent): void => {
-      if (key === targetKey && keyPressed) {
-        setKeyPressed(false);
-      }
-    };
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-    // Remove event listeners on cleanup
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
-  }, [keyPressed, targetKey]); // Empty array ensures that effect is only run on mount and unmount
-  return keyPressed;
-}
 
 const SlideNav = ({ slides, presentation, current }: SlideNavProps) => {
   const router = useRouter();
   const goNext = useKeyPress('ArrowRight');
   const goPrev = useKeyPress('ArrowLeft');
   const goPresentationHome = useKeyPress('h');
+  const toggleNav = useKeyPress('n');
+
+  const [navHidden, setNavHidden] = useLocalStorage<boolean>('nav-hidden', false);
+  const prevNavHidden = usePrevious(navHidden);
 
   const currentIndex = slides.indexOf(current);
   const prev = useMemo(() => currentIndex > 0 && slides[currentIndex - 1],[currentIndex, slides]);
@@ -69,6 +49,11 @@ const SlideNav = ({ slides, presentation, current }: SlideNavProps) => {
     if (goPresentationHome) { router.push(overviewHref) }
   }, [goPresentationHome, overviewHref, router]);
 
+
+  useEffect(() => {
+    if (toggleNav && navHidden === prevNavHidden) { setNavHidden(!navHidden) }
+  }, [toggleNav, navHidden, prevNavHidden, setNavHidden]);
+
   // return null;
   const prevProps = {
     href: prev ? prevHref: overviewHref,
@@ -79,9 +64,9 @@ const SlideNav = ({ slides, presentation, current }: SlideNavProps) => {
     // ['aria-disabled']: !next,
   };
   return (
-    <nav className={cx('slide-nav')}>
-      <Link prefetch={true} {...prevProps}>{prev ? '◁' : '▦'}</Link>
-      <Link prefetch={true} {...nextProps}>{next ? '▷' : '▦'}</Link>
+    <nav className={cx('slide-nav', {'slide-nav--hidden': navHidden})}>
+      <Link {...prevProps}>{prev ? '◁' : '⌂'}</Link>
+      <Link {...nextProps}>{next ? '▷' : '⌂'}</Link>
     </nav>
   );
 };

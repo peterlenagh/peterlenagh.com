@@ -17,4 +17,8 @@
             opacity: 0.2;
         }
     }
+    &.slide-nav--hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
 }

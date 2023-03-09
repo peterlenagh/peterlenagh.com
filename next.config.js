@@ -4,6 +4,16 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "placekitten.com",
+        port: "",
+        pathname: "/**/*",
+      },
+    ],
+  },
 };
 
 const withMDX = require("@next/mdx")({

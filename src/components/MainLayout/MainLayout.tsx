@@ -7,8 +7,9 @@ import React from "react"
 import styles from "./MainLayout.module.scss"
 const cx = classNames.bind(styles);
 
-const MainLayout = ({ children }: {
-  children: React.ReactNode
+const MainLayout = ({ children, markdownBody = true }: {
+  children: React.ReactNode,
+  markdownBody?: boolean
 }) => {
   return (
     <>
@@ -26,7 +27,7 @@ const MainLayout = ({ children }: {
             </h1>
         </Header>
         <div className={cx('main-wrapper')}>
-          <main className={cx('main', 'markdown-body')}>{children}</main>
+          <main className={cx('main', { 'markdown-body': markdownBody })}>{children}</main>
         </div>
 
         <footer className={cx('footer')}>

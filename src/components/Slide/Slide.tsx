@@ -1,9 +1,5 @@
-// "use client";
-
 import React from 'react';
-
 import classnames from 'classnames/bind';
-
 import styles from './Slide.module.scss';
 
 const cx = classnames.bind(styles);
@@ -15,7 +11,7 @@ const Slide = ({ className, children, ...props }: SlideProps) => {
     <section className={cx('slide', 'markdown-body', className)} {...props}>
       <div className={cx('slide__contents')}>
         {children}
-        </div>
+      </div>
     </section>
   );
 };
