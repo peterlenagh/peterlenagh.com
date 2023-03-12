@@ -1,18 +1,19 @@
-import './globals.scss'
+import "./globals.scss";
+import HTMLTag from "@/app/HtmlTag";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html id="layout" lang="en">
+    <HTMLTag id="layout" lang="en">
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
       <body>{children}</body>
-    </html>
-  )
+    </HTMLTag>
+  );
 }

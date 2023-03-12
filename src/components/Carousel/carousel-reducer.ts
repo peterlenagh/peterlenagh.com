@@ -1,40 +1,42 @@
 /* eslint-disable no-param-reassign */
 import produce from "immer";
 import { isEqual, set as _set, merge } from "lodash";
-import { ActionCreator, ActionCreatorsMapObject, createAction } from '@reduxjs/toolkit';
-
-
+import {
+  ActionCreator,
+  ActionCreatorsMapObject,
+  createAction,
+} from "@reduxjs/toolkit";
 
 type goToPayload = {
-    index: number
-    scroll: boolean
+  index: number;
+  scroll: boolean;
 };
 
 export type CarouselApi = {
-  prev: () => void,
-  next: () => void,
-  goTo: (index: number | goToPayload) => void,
-  setItemsLength: (length: number) => void,
-  setInfinite: (value: boolean) => void,
-  setScroll: (value: boolean) => void
-}
-
-export const actionCreators = {
-  prev: createAction('prev', () => ({payload: undefined})),
-  next: createAction('next', () => ({payload: undefined})),
-  goTo: createAction<number | goToPayload, 'goTo'>('goTo'),
-  setItemsLength: createAction<number, 'setItemsLength'>('setItemsLength'),
-  setInfinite: createAction<boolean, 'setInfinite'>('setInfinite'),
-  setScroll: createAction<boolean, 'setScroll'>('setScroll'),
+  prev: () => void;
+  next: () => void;
+  goTo: (index: number | goToPayload) => void;
+  setItemsLength: (length: number) => void;
+  setInfinite: (value: boolean) => void;
+  setScroll: (value: boolean) => void;
 };
 
-let test: ActionCreatorsMapObject<CarouselAction>
+export const actionCreators = {
+  prev: createAction("prev", () => ({ payload: undefined })),
+  next: createAction("next", () => ({ payload: undefined })),
+  goTo: createAction<number | goToPayload, "goTo">("goTo"),
+  setItemsLength: createAction<number, "setItemsLength">("setItemsLength"),
+  setInfinite: createAction<boolean, "setInfinite">("setInfinite"),
+  setScroll: createAction<boolean, "setScroll">("setScroll"),
+};
+
+let test: ActionCreatorsMapObject<CarouselAction>;
 
 test = actionCreators;
 
-
-
-export type CarouselAction = ReturnType<typeof actionCreators[keyof typeof actionCreators]>;
+export type CarouselAction = ReturnType<
+  (typeof actionCreators)[keyof typeof actionCreators]
+>;
 
 export const initialState = {
   selectedIndex: 0,
@@ -49,7 +51,6 @@ export const initialState = {
 
 export type CarouselState = typeof initialState;
 
-
 const carouselReducer = (state = initialState, action: CarouselAction) => {
   const newState = produce(state, (draft) => {
     const { selectedIndex, itemsLength } = state;
@@ -58,12 +59,12 @@ const carouselReducer = (state = initialState, action: CarouselAction) => {
     let scroll = false;
     // eslint-disable-next-line default-case
     switch (action.type) {
-      case 'setItemsLength': {
+      case "setItemsLength": {
         const length = action.payload;
         _set(draft, "itemsLength", length);
         break;
       }
-      case 'prev': {
+      case "prev": {
         newIndex = selectedIndex - 1;
         if (newIndex < 0) {
           newIndex = itemsLength - 1;
@@ -72,7 +73,7 @@ const carouselReducer = (state = initialState, action: CarouselAction) => {
         scroll = true;
         break;
       }
-      case 'next': {
+      case "next": {
         newIndex = selectedIndex + 1;
         if (newIndex > itemsLength - 1) {
           newIndex = 0;
@@ -81,7 +82,7 @@ const carouselReducer = (state = initialState, action: CarouselAction) => {
         scroll = true;
         break;
       }
-      case 'goTo': {
+      case "goTo": {
         if (typeof action.payload === "object") {
           ({ index: newIndex, scroll } = action.payload);
         } else {
@@ -90,23 +91,19 @@ const carouselReducer = (state = initialState, action: CarouselAction) => {
         }
         break;
       }
-      case 'setInfinite': {
+      case "setInfinite": {
         const value = action.payload;
         _set(draft, "infinite", value);
         break;
       }
-      case 'setScroll': {
+      case "setScroll": {
         const value = !!action.payload;
         _set(draft, "scroll", value);
         break;
       }
     }
 
-    if (
-      ['goTo','prev','next'].includes(
-        action.type
-      )
-    ) {
+    if (["goTo", "prev", "next"].includes(action.type)) {
       // if goingTo is set already, reset it if this action index is the same (i.e. we have "got to")
       if (draft.goingTo === newIndex) {
         _set(draft, "goingTo", undefined);

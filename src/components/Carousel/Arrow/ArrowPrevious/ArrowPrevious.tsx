@@ -2,7 +2,7 @@ import React, { memo, useContext } from "react";
 
 import Arrow from "../Arrow";
 import CarouselContext from "../../carousel-context";
-type ArrowPreviousProps = React.ComponentPropsWithoutRef<'button'>;
+type ArrowPreviousProps = React.ComponentPropsWithoutRef<"button">;
 
 const ArrowPrevious = ({ ...rest }: ArrowPreviousProps) => {
   const { prev, first, infinite } = useContext(CarouselContext);

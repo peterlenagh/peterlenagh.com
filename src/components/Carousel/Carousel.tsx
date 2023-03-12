@@ -20,9 +20,9 @@ const cx = classnames.bind(styles);
 
 type CarouselProps = React.ComponentPropsWithoutRef<"div"> & {
   options?: {
-    infinite?: boolean,
-  },
-  onSlide?: () => void,
+    infinite?: boolean;
+  };
+  onSlide?: () => void;
 };
 
 const Carousel = ({
@@ -56,13 +56,13 @@ const Carousel = ({
 
   useEffect(() => {
     const newItemsLength = Children.toArray(children).length;
-    if (newItemsLength !== itemsLength && setItemsLength) setItemsLength(newItemsLength);
+    if (newItemsLength !== itemsLength && setItemsLength)
+      setItemsLength(newItemsLength);
   }, [children, itemsLength, setItemsLength]);
-
 
   const carouselRef = useRef<HTMLUListElement>(null);
   const carouselContainerRef = useRef<HTMLDivElement>(null);
-  const { width: slideWidth} = useSize(carouselRef);
+  const { width: slideWidth } = useSize(carouselRef);
   const { x: scrollLeft } = useScrollPosition(carouselRef);
 
   /**
@@ -82,18 +82,32 @@ const Carousel = ({
    */
   useEffect(() => {
     if (!scroll) return;
-    const scrollPos: { left: number, behavior: "auto" | "smooth" } = {
+    const scrollPos: { left: number; behavior: "auto" | "smooth" } = {
       left: Math.round(selectedIndex * slideWidth * 1e2) / 1e2,
       behavior: looping ? "auto" : "smooth",
-    }
+    };
     if (carouselRef.current) carouselRef.current.scrollTo(scrollPos);
-    setTimeout(() => { setScroll(false); }, 1);
+    setTimeout(() => {
+      setScroll(false);
+    }, 1);
     onSlide();
-  }, [looping, selectedIndex, slideWidth, scroll, setScroll, carouselRef, onSlide]);
+  }, [
+    looping,
+    selectedIndex,
+    slideWidth,
+    scroll,
+    setScroll,
+    carouselRef,
+    onSlide,
+  ]);
 
   return (
     <div ref={carouselContainerRef} className={blockClassName}>
-      <ul ref={carouselRef} data-testid="carousel-list" className={cx("carousel__list")}>
+      <ul
+        ref={carouselRef}
+        data-testid="carousel-list"
+        className={cx("carousel__list")}
+      >
         {itemizedChildren}
       </ul>
     </div>

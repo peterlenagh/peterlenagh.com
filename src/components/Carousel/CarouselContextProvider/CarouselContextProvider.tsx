@@ -1,6 +1,10 @@
 import React, { memo, useEffect, useMemo, useReducer, Dispatch } from "react";
 
-import carouselReducer, { actionCreators, CarouselState, initialState } from "../carousel-reducer";
+import carouselReducer, {
+  actionCreators,
+  CarouselState,
+  initialState,
+} from "../carousel-reducer";
 import CarouselContext from "../carousel-context";
 import { AnyAction, Action, ActionCreatorsMapObject } from "@reduxjs/toolkit";
 
@@ -8,9 +12,9 @@ type CarouselContextProviderProps = React.PropsWithChildren<{
   onChange?: (state: CarouselState) => void;
 }>;
 
-type PreserveArgsOnFnMap<Type extends { [k: string]: (...args: any[]) => any }> = {
-  [Key in keyof Type]: (...args: Parameters<Type[Key]>) => void;
-};
+type PreserveArgsOnFnMap<
+  Type extends { [k: string]: (...args: any[]) => any }
+> = { [Key in keyof Type]: (...args: Parameters<Type[Key]>) => void };
 
 export type Expand<T> = T extends (...args: infer A) => infer R
   ? (...args: Expand<A>) => Expand<R>
@@ -26,33 +30,35 @@ export type ExpandRecursively<T> = T extends (...args: infer A) => infer R
     : never
   : T;
 
-
-
-function wrapActionCreatorsWithDispatch<
-  Map extends ActionCreatorsMapObject
->(
+function wrapActionCreatorsWithDispatch<Map extends ActionCreatorsMapObject>(
   actionCreators: Map,
   dispatch: Dispatch<any>
 ): ExpandRecursively<PreserveArgsOnFnMap<Map>> {
-
   const wrappedActionCreators = {} as any;
 
   for (const key in actionCreators) {
     const actionCreator = actionCreators[key];
-    if (typeof actionCreator === 'function') {
-      wrappedActionCreators[key] = (...args: Parameters<typeof actionCreator>) => {
+    if (typeof actionCreator === "function") {
+      wrappedActionCreators[key] = (
+        ...args: Parameters<typeof actionCreator>
+      ) => {
         dispatch(actionCreator(...args));
       };
     }
   }
   return wrappedActionCreators;
-};
+}
 
-const CarouselContextProvider = ({ children, onChange = () => {} }: CarouselContextProviderProps) => {
-
-  const [state, dispatch] = useReducer(carouselReducer, initialState)
+const CarouselContextProvider = ({
+  children,
+  onChange = () => {},
+}: CarouselContextProviderProps) => {
+  const [state, dispatch] = useReducer(carouselReducer, initialState);
   // const boundActionCreators = bindActionCreators(actionCreators, dispatch);
-  const dispatchActions = useMemo(() => wrapActionCreatorsWithDispatch(actionCreators, dispatch),[dispatch]);
+  const dispatchActions = useMemo(
+    () => wrapActionCreatorsWithDispatch(actionCreators, dispatch),
+    [dispatch]
+  );
 
   // const actions = useMemo(() => ({
   //   prev: (...args: Parameters<typeof actionCreators.prev>) => dispatch(actionCreators.prev(...args)),

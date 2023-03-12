@@ -1,19 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import classnames from 'classnames/bind';
+import classnames from "classnames/bind";
 
-import styles from './Button.module.scss';
+import styles from "./Button.module.scss";
 
 const cx = classnames.bind(styles);
 
-
-type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   label: string;
-};;
+};
 
 const Button = ({ className, label, ...props }: ButtonProps) => {
   return (
-    <button className={cx('button', className)} {...props}>
+    <button className={cx("button", className)} {...props}>
       {label}
     </button>
   );

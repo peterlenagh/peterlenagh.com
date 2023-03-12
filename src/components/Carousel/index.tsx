@@ -11,10 +11,12 @@ import ArrowPrevious from "./Arrow/ArrowPrevious/ArrowPrevious";
 import CarouselContext from "./carousel-context";
 import CarouselCount from "./CarouselCount/CarouselCount";
 
-const withCarouselContext = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+const withCarouselContext = <P extends object>(
+  WrappedComponent: React.ComponentType<P>
+) => {
   const WithCarouselContext = (props: React.PropsWithChildren) => (
     <CarouselContextProvider>
-      <WrappedComponent {...props as P} />
+      <WrappedComponent {...(props as P)} />
     </CarouselContextProvider>
   );
   return WithCarouselContext;

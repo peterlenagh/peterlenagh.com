@@ -10,31 +10,34 @@ import styles from "./CarouselPagination.module.scss";
 const cx = classNames.bind(styles);
 
 type CarouselPaginationProps = {
-    onClick?: (index: number) => void;
-    className?: string;
+  onClick?: (index: number) => void;
+  className?: string;
 };
 
-const CarouselPagination = ({ onClick, className }: CarouselPaginationProps) => {
-
-    const { selectedIndex, itemsLength, goTo } = useContext(CarouselContext);
+const CarouselPagination = ({
+  onClick,
+  className,
+}: CarouselPaginationProps) => {
+  const { selectedIndex, itemsLength, goTo } = useContext(CarouselContext);
 
   const items = Array.from({ length: itemsLength }, (_, i) => i + 1);
 
   return (
-      <div className={cx(className, 'carousel-pagination')}>
-          {items.map((item, index) => (
-              <Button
-                  key={index}
-                  className={cx('carousel-pagination__item', { 'carousel-pagination__item--active': selectedIndex === index })}
-                  onClick={() => {
-                      onClick && onClick(index);
-                      goTo(index);
-                  }}
-              />
+    <div className={cx(className, "carousel-pagination")}>
+      {items.map((item, index) => (
+        <Button
+          key={index}
+          className={cx("carousel-pagination__item", {
+            "carousel-pagination__item--active": selectedIndex === index,
+          })}
+          onClick={() => {
+            onClick && onClick(index);
+            goTo(index);
+          }}
+        />
       ))}
     </div>
   );
 };
-
 
 export default CarouselPagination;

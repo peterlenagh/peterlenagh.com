@@ -1,1 +1,1 @@
-export * as bbc from './bbc';
+export * as bbc from "./bbc";

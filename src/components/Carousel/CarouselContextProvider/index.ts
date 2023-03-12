@@ -1,1 +1,1 @@
-export { default } from './CarouselContextProvider';
+export { default } from "./CarouselContextProvider";

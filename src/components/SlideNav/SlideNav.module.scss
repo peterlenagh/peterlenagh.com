@@ -1,24 +1,31 @@
 .slide-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 10vw;
-    height: 10vh;
-    align-items: center;
-    a {
-        font-size: 1.5rem;
-        width: 10vh;
-        text-align: center;
-        &[aria-disabled="true"] {
-            pointer-events: none;
-            opacity: 0.2;
-        }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10vw;
+  height: 10vh;
+  align-items: center;
+  a {
+    font-size: 1.5rem;
+    width: 10vh;
+    text-align: center;
+    &[aria-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.2;
     }
-    &.slide-nav--hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
+  }
+  transition: opacity 1s ease-in-out;
+  .js & {
+    opacity: 0;
+  }
+  .no-js & {
+    opacity: 1;
+  }
+  :global(html[data-nav-hidden="true"]) & {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
