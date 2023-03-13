@@ -4,7 +4,7 @@ import ArrowPrevious from "./Arrow/ArrowPrevious/ArrowPrevious";
 import Carousel from "./Carousel";
 import CarouselContextProvider from "./CarouselContextProvider";
 import CarouselCount from "./CarouselCount/CarouselCount";
-import CarouselPagination from "./CarouselPagination/CarouselPaginatoin";
+import CarouselPagination from "./CarouselPagination/CarouselPagination";
 
 const slides = [
   {

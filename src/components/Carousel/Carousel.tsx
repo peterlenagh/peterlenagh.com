@@ -2,7 +2,6 @@ import React, {
   Children,
   useContext,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -14,7 +13,6 @@ import useScrollPosition from "@/utils/hooks/useScrollPosition";
 import CarouselContext from "./carousel-context";
 
 import styles from "./Carousel.module.scss";
-import { flushSync } from "react-dom";
 
 const cx = classnames.bind(styles);
 

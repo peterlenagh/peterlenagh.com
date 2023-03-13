@@ -19,3 +19,9 @@ export default async function SlidePage(props: PageProps) {
   // @ts-expect-error Server Component
   return <PresentationPreview presentation={presentation} />;
 }
+
+export async function generateMetadata({ params, searchParams }: PageProps) {
+  return {
+    title: `${params.presentation}`,
+  };
+}

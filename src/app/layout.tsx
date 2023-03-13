@@ -2,6 +2,15 @@ import "./globals.scss";
 import HTMLTag from "@/app/HtmlTag";
 import { Analytics } from "@vercel/analytics/react";
 
+const description = `This is my personal website,
+I mostly use to host presentations or demo work, so I'm afraid there's not loads here to see...`;
+export const metadata = {
+  title: "Peter Lenagh",
+  description,
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 export default function RootLayout({
   children,
 }: {

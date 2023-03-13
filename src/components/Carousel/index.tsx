@@ -10,6 +10,7 @@ import ArrowNext from "./Arrow/ArrowNext/ArrowNext";
 import ArrowPrevious from "./Arrow/ArrowPrevious/ArrowPrevious";
 import CarouselContext from "./carousel-context";
 import CarouselCount from "./CarouselCount/CarouselCount";
+import CarouselPagination from "./CarouselPagination/CarouselPagination";
 
 const withCarouselContext = <P extends object>(
   WrappedComponent: React.ComponentType<P>
@@ -32,4 +33,5 @@ export {
   CarouselContext,
   withCarouselContext,
   CarouselCount,
+  CarouselPagination,
 };

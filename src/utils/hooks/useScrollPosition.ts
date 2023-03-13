@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useCallback, useState } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 import { isEqual } from "lodash";
 
 const isBrowser = () => typeof window !== "undefined";
@@ -52,7 +52,7 @@ export const useScrollPos = (element: React.RefObject<HTMLElement>) => {
     [element]
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const domEl = element.current;
     if (!domEl) return;
 

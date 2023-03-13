@@ -64,3 +64,10 @@ export const generateStaticParams = async () => {
   });
   return staticParams;
 };
+
+export async function generateMetadata({ params, searchParams }: PageProps) {
+  const slideNo = params.slide.slice(0, 3).replace(/\D/g, "");
+  return {
+    title: `${params.presentation} #${slideNo}`,
+  };
+}

@@ -1,0 +1,37 @@
+# Carousel Component
+
+This is a simple carousel-style React component build on top of css scroll snap.
+
+The carousel's state and actions are available via React Context.
+
+## Usage
+
+```Page.tsx
+import Carousel, {
+  CarouselContextProvider,
+  CarouselPagination,
+} from "@/components/Carousel";
+
+import slides from "./slides" as {src: string, alt: string}[];
+
+const Page = () => {
+    return (
+        <CarouselContextProvider>
+            <Carousel>
+                {slides.map((slide, index) => (
+                    <img key={`s${index}`} {...slide} />
+                ))}
+            </Carousel>
+        {/*
+            (Optional) controls etc. These could be anywhere
+            within the ContextProvider.
+        */}
+            <CarouselPagination />
+        </CarouselContextProvider>
+    );
+}
+```
+
+## Demo
+
+Disable js on this page and you'll see the basic scroll functionality of the carousel still works!

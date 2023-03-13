@@ -22,3 +22,7 @@ export default async function SlidePage(props: PageProps) {
     </>
   );
 }
+
+export const metadata = {
+  title: "Presentations",
+};
